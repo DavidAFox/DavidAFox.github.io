@@ -1,0 +1,71 @@
+@media only screen and (min-height: 600px) {
+	nav#dnav {
+		height: 100px;
+		
+	}
+}
+body {
+	margin:0;
+	padding: 0;
+}
+#navbar-insides{
+	margin: auto;
+}
+
+.dnav-element {
+	height: 100%;
+}
+
+.dnav-element:hover {
+	background-color: green;
+}
+
+.d-active {
+	background-color: lightgreen;
+	border-style: solid;
+	border-color: green;
+	border-width: 1px;
+}
+
+nav#dnav {
+	background: linear-gradient(white, green);
+	margin: 0px;
+}
+
+#view {
+	position: relative;
+	display: inline-block;
+}
+.row {
+	margin: 0px;
+	padding: 0px;
+}
+
+.sidebar {
+	margin: 0px;
+	display: inline-block;
+	background-color: green;
+	height: 1000px;
+	border-style: solid;
+	border-color: green;
+}
+
+#game-explanation {
+	display: inline-block;
+}
+
+.chat-container {
+	float: right;
+}
+
+table, td, tr {
+	border-style: solid;
+	border-color: black;
+	border-collapse: collapse;
+	border-width: 1px;
+	padding: 3px;
+}
+
+#chat-accounts {
+	width: 100%;
+}

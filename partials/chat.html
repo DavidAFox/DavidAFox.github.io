@@ -1,0 +1,55 @@
+<div class="row">
+	<div class="col-sm-6 col-md-6 col-lg-6">
+		<div class="well">
+			<h3>Chat</h3>
+			<p>Chat is chat server written in go.</p>
+			
+			<h4>Demo</h4>
+			<p>To the right is a demo using the angular version of the web client.  Room creation has been limited and new account creation has been disabled.  You can use one of the following to log in:</p>
+			<table id="chat-accounts">
+				<tr><td>Name</td><td>Password</td></tr>
+				<tr><td>guest</td><td>12345</td></tr>
+				<tr><td>guest1</td><td>12345</td></tr>
+				<tr><td>guest2</td><td>12345</td></tr>
+				<tr><td>guest3</td><td>12345</td></tr>
+			</table>
+
+			<h4>Features</h4>
+			<ul>
+				<li>multiple rooms</li>
+				<li>user logins</li>
+				<li>multiple connection types</li>
+				<li>optional database support</li>
+				<li>block list</li>
+				<li>friend list</li>
+			</ul>
+
+			<h4>Config</h4>
+			<p>There is a sample Config file provided.  The server will look for a config file in its folder. A different location can be specified using the -config <i>filename</i> flag.  The server will start the connection types that have ports specified for them in the config.</p>
+			
+			<h4>Commands</h4>
+			<ul>
+					<li>/tell <i>user message</i> - send the message to the specified user</li>
+					<li>/block <i>user</i> - adds the user to your block list preventing future messages from that user</li>
+					<li>/unblock <i>user</i> - removes the user from your block list allowing messages from that user</li>
+					<li>/friend <i>user</i> - adds the user to your friend list</li>
+					<li>/unfriend <i>user</i> - removes the user from your friend list</li>
+					<li>/friendlist - shows your friend list and displays what room your friends are in or when they last logged in</li>
+					<li>/blocklist - shows you block list</li>
+					<li>/join <i>room name</i> - moves you to the specifed room or creates it if it doesn't exist *won't create the room if the room limit has been reached</li>
+					<li>/quit - logges you out of the server</li>
+					<li>/list - shows a list of the current rooms</li>
+			</ul>
+			<h4>Database</h4>
+			<p>The server currently supports only a Postgresql database.  If no database is specified the user information will instead be stored in a file.  New database types can be added by creating an adapter that meets the DataStore interface in clientdata.go and then adding an entry in the datafactory package.</p>
+
+			<p>Browser http <a href="https://github.com/DavidAFox/ChatWebInterface">client</a></p>
+
+			<p><a href="https://github.com/DavidAFox/WebChatInterfaceAJS">Angularjs version</a></p>
+			<a href="https://github.com/DavidAFox/Chat">Chat Server</a>
+		</div>
+	</div>
+	<div class="chat-container col-sm-6 col-xs-8 col-md-6 col-lg-6">
+		<chat-interface></chat-interface>
+	</div>
+</div>
