@@ -242,7 +242,7 @@ app.directive('chatInterface', function() {
 
 	return {
 		controller: 'MainController',
-		templateUrl: 'webchat.html',
+		templateUrl: 'webchat/webchat.html',
 		restrict: 'E'
 	}
 })
