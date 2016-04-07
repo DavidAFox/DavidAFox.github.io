@@ -1,6 +1,6 @@
 (function(){
-var app = angular.module('chatInterface', ['connectionModule', 'userNames', 'luegg.directives']);
-app.value('serverInfo', {scheme: 'http://', address: '104.236.95.248:8080/'});//change these to the location of the server
+var app = angular.module('chatInterface', ['connectionModule', 'userNames', 'luegg.directives', 'icons', 'messageParse']);
+app.value('serverInfo', {scheme: 'http://', address: '104.236.95.248:80/'});//change these to the location of the server
 app.directive('chatMessage', function(){
 	return {
 		template: 	'<div data-ng-switch="message.Type">' +
@@ -21,7 +21,7 @@ app.directive('chatMessage', function(){
 							'{{message.Text}}</br>' +
 						'</div>' +
 						'<div data-ng-switch-when="Send">' +
-							'{{message.TimeString}} [<user user-name="{{message.Sender}}">{{message.Sender}}</user>]: {{message.Text}}' +
+							'{{message.TimeString}} [<user user-name="{{message.Sender}}">{{message.Sender}}</user>]: <message-text text="message.Text"></message-text>' +
 						'</div>' +
 						'<div data-ng-switch-default>' +
 							'{{message}}' +
@@ -86,9 +86,6 @@ app.controller('MainController', ['$scope','$interval', 'serverInfo', 'httpConne
 	$scope.toggelLogin = function() {
 		$scope.loggedState = LOGIN
 	}
-	var setLoginMessage = function(message) {
-		$scope.loginMessage = message;
-	}
 	var config = {
 		resetLogin: function() {
 			$scope.loggedState = LOGIN;
@@ -99,7 +96,6 @@ app.controller('MainController', ['$scope','$interval', 'serverInfo', 'httpConne
 				$scope.conn = httpConnection(config);
 			}
 		},
-		loginMessage: setLoginMessage,
 		scheme: serverInfo.scheme,
 		server: serverInfo.address,
 		onmessage: function(message) {
@@ -175,7 +171,23 @@ app.controller('MainController', ['$scope','$interval', 'serverInfo', 'httpConne
 		$scope.messages.push(message);
 	};
 	this.updateMessages = function(messages) {
-		messages.forEach(this.addMessage);
+		//messages.forEach(this.addMessage);
+		var that = this;
+		var toLocaleTimeStringSupportsLocales = function() {
+ 			try {
+    			new Date().toLocaleTimeString('i');
+  			} catch (e) {
+    			return e.name === 'RangeError';
+  			}
+  			return false;
+		}
+		messages.forEach(function(message){
+			if(typeof message.Time !== 'undefined' && toLocaleTimeStringSupportsLocales()) {
+				var date = new Date(message.Time);
+				message.TimeString = date.toLocaleTimeString();
+			}
+			that.addMessage(message);
+		})
 	};
 	var update = function() {
 		$scope.conn.send({Command: 'friendlist', Args: []});

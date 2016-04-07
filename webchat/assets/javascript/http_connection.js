@@ -62,7 +62,6 @@ factory('websocketConnection', ['$timeout', function($timeout){
 		var onmessage;
 		var websocket;
 		var logged = false;
-		config.loginMessage("");
 		const OPEN = 1;
 		const CONNECTING = 0;
 		if(config.scheme !== 'ws://' && config.scheme !== 'wss://') {
@@ -105,7 +104,6 @@ factory('websocketConnection', ['$timeout', function($timeout){
 		websocket.onerror = function() {
 			config.resetLogin();
 			websocket.close();
-			config.loginMessage("Error Connecting to Server")
 			logged = false;
 		};
 		return conn;
