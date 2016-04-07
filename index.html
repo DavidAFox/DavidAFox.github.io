@@ -11,7 +11,11 @@
 		<link rel="stylesheet" href="gameoflife/game_of_life.css">
 		<link rel="stylesheet" href="webchat/assets/css/webchat.css">
 		<link href="webchat/assets/css/icons.css" rel="stylesheet" type="text/css">
-
+		<script>
+			if (window.location.protocol !== "http:") {
+				window.location.href = "http:"+window.location.href.substring(window.location.protocol.length);
+			}
+		</script>
 	</head>
 	<body ng-app="githubApp">
 		<div class="row">
